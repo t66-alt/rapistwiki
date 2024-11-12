@@ -1,0 +1,220 @@
+/* Body and general layout styles */
+body {
+    user-select: none;
+    margin: 0;
+    padding: 50px;
+    overflow-y: scroll;
+    font-family: 'Minecraftia', sans-serif;
+    perspective: 1500px;
+    background: linear-gradient(rgb(153, 153, 153), #8f8f8f);
+    background-image: url('https://otkritkis.com/wp-content/uploads/2022/07/guydb.gif');
+    background-size: cover; /* Make the background image cover the entire body */
+    background-position: center; /* Center the background image */
+    background-attachment: fixed; /* Keep the background fixed during scroll */
+}
+
+/* Card container with grid layout - 3 cards on top, 3 cards on the bottom */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    grid-template-rows: repeat(2, auto); /* 2 rows, 1 for top and 1 for bottom */
+    gap: 20px; /* Space between cards */
+    justify-items: center; /* Center cards horizontally */
+    padding: 20px;
+}
+
+/* Global box-sizing for all elements */
+* {
+    box-sizing: border-box;
+}
+
+/* General layout for HTML and body */
+html, body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Card styles: make the cards bigger and have some nice effects */
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1em;
+    background: rgba(255, 255, 255, 0.1);
+    width: 350px; /* Increase width of cards */
+    height: 350px; /* Increase height of cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Normal shadow */
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    margin: 20px;
+    transition-duration: 400ms;
+    transition-property: transform, box-shadow;
+    transition-timing-function: ease-out;
+    position: relative;
+    overflow: visible;
+    z-index: 1;
+    border: #2F2F2F 1px solid;
+}
+
+/* Hover effect for the cards */
+.card:hover {
+    cursor: crosshair;
+    transform: scale(1.05);
+    /* Glowing effect on hover (changed blue glow) */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 255, 0.8); /* Glowing blue effect */
+}
+
+/* Profile picture styles */
+.pfp {
+    width: 120px; /* Increase size of profile picture */
+    height: 120px;
+    border-radius: 60px;
+    border: 2px solid #ffffff;
+    margin-bottom: 10px;
+    position: relative;
+    top: 50px;
+}
+
+/* Name-text styling for Detatched */
+.name-text {
+    color: white;
+    font-size: 1.5em;
+    margin-top: 60px;
+    margin-bottom: 10px;
+    text-align: center; /* Center text horizontally */
+    position: relative;
+}
+
+/* Verified icon styling */
+.verified-icon {
+    width: 20px; /* Adjust size of the icon */
+    height: 20px;
+    position: absolute; /* Position it to the right of the name */
+    left: 100%; /* Move it directly next to the name */
+    margin-left: 5px; /* Add some space between the name and the icon */
+    vertical-align: middle; /* Align the icon vertically with the name */
+}
+
+/* Verified icon styling */
+.verified-icon {
+    width: 20px;  /* Adjust width of the verified icon */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Social icons container */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+/* Social icon hover effects */
+.social-icons .icon img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s;
+}
+
+.social-icons .icon:hover img {
+    transform: scale(1.3);
+}
+
+/* Header style */
+.Header {
+    border-radius: 10px;
+    padding: 2px;
+    z-index: 2;
+    position: absolute;
+    top: 3%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    text-transform: uppercase;
+    font-family: 'Minecraftia', sans-serif;
+    font-size: 2em;
+    font-weight: 700;
+    color: #f3f3f3;
+    transition: color 0.5s ease, text-shadow 0.5s ease;
+}
+
+/* Hover effect for header */
+.Header:hover {
+    cursor: pointer;
+    color: #ffffff;
+    /* Glowing effect for header (changed purple to blue) */
+    text-shadow:
+            1px 1px 1px #b3b3b3,
+            1px 2px 2px rgba(209, 209, 209, 0.6),
+            1px 3px 3px rgba(209, 209, 209, 0.6),
+            1px 10px 6px rgba(0, 0, 255, 0.8),  /* Blue glow */
+            1px 12px 10px rgba(0, 0, 255, 0.5),  /* Blue glow */
+            1px 15px 35px rgba(0, 0, 255, 0.5),  /* Blue glow */
+            1px 15px 60px rgba(0, 0, 255, 0.8);  /* Blue glow */
+}
+
+/* Music button style */
+.music-button {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 6px;
+    border: 1px solid rgba(92, 92, 92, 0.315);
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    overflow: hidden;
+    width: 55px;
+    height: 50px;
+}
+
+/* Music button icon styles */
+.music-button img {
+    background: rgba(146, 146, 146, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    width: 55px;
+    height: 50px;
+    transition: opacity 0.1s ease;
+    position: absolute;
+}
+
+/* Hidden music button icon */
+.music-button img.hidden {
+    opacity: 0.1;
+}
+
+/* Particle effect styles */
+#particle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    z-index: 9999; /* Ensure particles are above other content */
+}
+
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8); /* White particles with some transparency */
+    animation: particle-animation 1s forwards;
+}
+
+@keyframes particle-animation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rapist.Wiki - members</title>
+  <meta name="description" content="Rapist.wiki">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="imgs/fa.png" type="image/png" />
+  <link rel="stylesheet" type="text/css" href="css/members.css">
+  <link rel="stylesheet" type="text/css" href="css/minecraftia">
+  <style>
+    /* Body and general layout styles */
+    body {
+      user-select: none;
+      margin: 0;
+      padding: 50px;
+      overflow-y: scroll;
+      font-family: 'Minecraftia', sans-serif;
+      perspective: 1500px;
+      background: linear-gradient(rgb(153, 153, 153), #8f8f8f);
+      background-image: url('https://otkritkis.com/wp-content/uploads/2022/07/guydb.gif');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    /* Card container with grid layout - 3 cards per row */
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+      gap: 20px; /* Space between cards */
+      justify-items: center;
+      padding: 20px;
+    }
+
+    /* Global box-sizing for all elements */
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Card styles: make the cards bigger and have some nice effects */
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 1em;
+      background: rgba(255, 255, 255, 0.1);
+      width: 350px;
+      height: 350px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      margin: 20px;
+      transition-duration: 400ms;
+      transition-property: transform, box-shadow;
+      position: relative;
+      z-index: 1;
+      border: #2F2F2F 1px solid;
+    }
+
+    .card:hover {
+      cursor: crosshair;
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 255, 0.8);
+    }
+
+    /* Profile picture styles */
+    .pfp {
+      width: 120px;
+      height: 120px;
+      border-radius: 60px;
+      border: 2px solid #ffffff;
+      margin-bottom: 10px;
+      position: relative;
+      top: 50px;
+    }
+
+    /* Name-text styling */
+    .name-text {
+      color: white;
+      font-size: 1.5em;
+      margin-top: 60px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    /* Social icons container */
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 5px;
+    }
+
+    .social-icons .icon img {
+      width: 30px;
+      height: 30px;
+      transition: transform 0.3s;
+    }
+
+    .social-icons .icon:hover img {
+      transform: scale(1.3);
+    }
+
+    /* Header style */
+    .Header {
+      border-radius: 10px;
+      padding: 2px;
+      z-index: 2;
+      position: absolute;
+      top: 3%;
+      right: 50%;
+      transform: translate(50%, -50%);
+      text-transform: uppercase;
+      font-family: 'Minecraftia', sans-serif;
+      font-size: 2em;
+      font-weight: 700;
+      color: #f3f3f3;
+      transition: color 0.5s ease, text-shadow 0.5s ease;
+    }
+
+    .Header:hover {
+      cursor: pointer;
+      color: #ffffff;
+      text-shadow:
+              1px 1px 1px #b3b3b3,
+              1px 2px 2px rgba(209, 209, 209, 0.6),
+              1px 3px 3px rgba(209, 209, 209, 0.6),
+              1px 10px 6px rgba(0, 0, 255, 0.8),
+              1px 12px 10px rgba(0, 0, 255, 0.5),
+              1px 15px 35px rgba(0, 0, 255, 0.5),
+              1px 15px 60px rgba(0, 0, 255, 0.8);
+    }
+
+    /* Particle effect styles */
+    #particle-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+    }
+
+    .particle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.8);
+      animation: particle-animation 1s forwards;
+    }
+
+    @keyframes particle-animation {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0);
+        opacity: 0;
+      }
+    }
+
+    /* Typewriter effect style */
+    .typewriter {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Minecraftia', sans-serif;
+      font-size: 1.5em;
+      color: white;
+      overflow: hidden;
+      border-right: .15em solid #fff; /* Cursor effect */
+      white-space: nowrap;
+      margin: 0;
+      padding: 0;
+    }
+
+  </style>
+</head>
+<body>
+
+<span class="Header">Rapist.wiki</span>
+
+<div id="particle-container"></div>
+
+<script>
+  // Particle creation logic
+  function createParticle(event) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    document.getElementById('particle-container').appendChild(particle);
+
+    const angle = Math.random() * 360;
+    const distance = Math.random() * 30 + 20;
+    const duration = Math.random() * 0.5 + 0.5;
+
+    const dx = Math.cos(angle) * distance;
+    const dy = Math.sin(angle) * distance;
+
+    particle.style.left = `${event.clientX}px`;
+    particle.style.top = `${event.clientY}px`;
+    particle.style.animation = `particle-animation ${duration}s forwards`;
+
+    setTimeout(() => {
+      particle.remove();
+    }, duration * 1000);
+  }
+
+  document.addEventListener('mousemove', createParticle);
+</script>
+
+<!-- Card container -->
+<div class="card-container">
+  <!-- Detatched -->
+  <div class="card">
+    <img class="pfp" src="imgs/giphy.gif" />
+    <div class="name-text">Detatched</div>
+    <div class="social-icons">
+      <a href="discord://-/users/1196612898668167209" class="icon">
+        <img src="imgs/xxNdMnth.png" />
+      </a>
+      <a href="https://Detatched.lol" target="_blank" class="icon">
+        <img src="imgs/eZPMz84q.png" />
+      </a>
+      <a href="https://steamcommunity.com/id/hatefags/" target="_blank" class="icon">
+        <img src="imgs/steam.png" />
+      </a>
+      <a href="https://www.instagram.com/listlng/?igsh=MzRlODBiNWFlZA%3D%3D" class="icon">
+        <img src="imgs/insta.png" />
+      </a>
+    </div>
+  </div>
+
+  <!-- Kez -->
+  <div class="card">
+    <img class="pfp" src="imgs/kez.png" />
+    <div class="name-text">Kez</div>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/_an_0__/?igsh=MzRlODBiNWFlZA%3D%3D" class="icon">
+        <img src="imgs/insta.png" />
+      </a>
+      <a href="discord://-/users/828761505339932712" target="_blank" class="icon">
+        <img src="imgs/xxNdMnth.png" />
+      </a>
+    </div>
+  </div>
+
+  <!-- Zrakii -->
+  <div class="card">
+    <img class="pfp" src="imgs/zrak.png" />
+    <div class="name-text">Zrakii</div>
+    <div class="social-icons">
+      <a href="discord://-/users/7061344175291106346" class="icon">
+        <img src="imgs/insta.png" />
+      </a>
+      <a href="discord://-/users/7061344175291106346" class="icon">
+        <img src="imgs/tiktok.png" />
+      </a>
+      <a href="discord://-/users/7061344175291106346" class="icon">
+        <img src="imgs/snapchat.png" />
+      </a>
+    </div>
+  </div>
+
+  <!-- Slur -->
+  <div class="card">
+    <img class="pfp" src="imgs/slur.png" />
+    <div class="name-text">slur</div>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/slurwalkemdownwittaswitch/" class="icon">
+        <img src="imgs/insta.png" />
+      </a>
+      <a href="https://soundcloud.com/user-628761655" target="_blank" class="icon">
+        <img src="imgs/soundcloud.png" />
+      </a>
+      <a href="https://steamcommunity.com/profiles/76561199195458606/" target="_blank" class="icon">
+        <img src="imgs/steam.png" />
+      </a>
+    </div>
+  </div>
+
+  <!-- DeadWrite -->
+  <div class="card">
+    <img class="pfp" src="imgs/deadwrite.png" />
+    <div class="name-text">DeadWrite</div>
+    <div class="social-icons">
+      <a href="discord://-/users/790067913733308436" class="icon">
+        <img src="imgs/xxNdMnth.png" />
+      </a>
+      <a href="https://www.roblox.com/users/300539312/profile" target="_blank" class="icon">
+        <img src="imgs/roblox.png" />
+      </a>
+    </div>
+  </div>
+
+  <!-- Fear -->
+  <div class="card">
+    <img class="pfp" src="imgs/fear.png" />
+    <div class="name-text">fear</div>
+    <div class="social-icons">
+      <a href="discord://-/users/1043658958235246713" class="icon">
+        <img src="imgs/xxNdMnth.png" />
+      </a>
+      <a href="https://www.roblox.com/users/2967821652/profile?friendshipSourceType=PlayerSearch" target="_blank" class="icon">
+        <img src="imgs/roblox.png" />
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Automatically play the audio -->
+<audio id="audio" src="https://files.offshore.cat/5mJrYLXx.mp3" loop autoplay></audio>
+
+<script>
+  // Automatically play the audio on page load
+  window.onload = () => {
+    const audio = document.getElementById('audio');
+    if (audio.paused) {
+      audio.play().catch((error) => {
+        console.error('Playback failed on load:', error);
+      });
+    }
+  };
+
+  // Typewriter effect script
+  const text = "THIS WAS MADE BY DETATCHED | @SADISSTIC ON DISCORD";
+  let i = 0;
+  let deleting = false;
+  let interval;
+
+  function typeWriter() {
+    const element = document.querySelector('.typewriter');
+    if (deleting) {
+      element.innerHTML = text.substring(0, i);
+      i--;
+      if (i === 0) {
+        deleting = false;
+      }
+    } else {
+      element.innerHTML = text.substring(0, i);
+      i++;
+      if (i === text.length) {
+        deleting = true;
+      }
+    }
+  }
+
+  interval = setInterval(typeWriter, 100);
+
+</script>
+
+<!-- Add typewriter text element at the bottom -->
+<div class="typewriter"></div>
+
+<!-- Link the external JavaScript files -->
+<script src="funny.js"></script>
+<script src="protect.js"></script>
+
+</body>
+</html>
